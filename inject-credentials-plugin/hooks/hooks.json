@@ -1,0 +1,13 @@
+{
+  "description": "Inject credentials plugin",
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "../hooks-handlers/session-start.sh",
+        "timeout": 10,
+        "hooks":[]
+      }
+    ]
+  }
+}

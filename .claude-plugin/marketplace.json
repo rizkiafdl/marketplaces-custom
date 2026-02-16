@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "custom-plugins",
+  "description": "Personal custom plugins marketplace",
+  "owner": {
+    "name": "Muhammad Rizki Afdolli"
+  },
+  "plugins": [
+    {
+      "name": "inject-credentials-plugin",
+      "description": "Automatically injects Notion credentials and configuration into every Claude Code session",
+      "version": "1.0.0",
+      "author": {
+        "name": "Muhammad Rizki Afdolli"
+      },
+      "source": "./inject-credentials-plugin",
+      "category": "productivity"
+    }
+  ]
+}

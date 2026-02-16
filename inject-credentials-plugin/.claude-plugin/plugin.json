@@ -1,0 +1,8 @@
+{
+  "name": "inject-credentials-plugin",
+  "version": "2.0.0",
+  "description": "Persists and injects Notion database configuration into every Claude Code session for seamless markdown export to Notion databases",
+  "author": {
+    "name": "Muhammad Rizki Afdolli"
+  }
+}
