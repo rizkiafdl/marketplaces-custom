@@ -1,15 +1,19 @@
 ---
 name: initiate-notion-db
 description: Inject and persist Notion credentials for Claude Code plugin access
-allowed-tools: Read, Write, Bash, Glob
+allowed-tools:
+  - Read
+  - Glob
+  - Bash(mkdir *)
+  - Bash(chmod *)
+  - Write(~/.claude/plugins/cache/custom-plugins/inject-credentials-plugin/**/config/notion.conf)
 ---
 
 You are handling the Notion database credential setup for the inject-credentials-plugin. Act immediately — do not explain the plugin or show documentation. Follow these steps in order:
 
 ## Step 1 — Check Existing Config
 
-Check both config paths for an existing `notion.conf`:
-- `~/.claude/plugins/marketplaces/custom-plugins/inject-credentials-plugin/config/notion.conf`
+Check config paths for an existing `notion.conf`:
 - `~/.claude/plugins/cache/custom-plugins/inject-credentials-plugin/*/config/notion.conf`
 
 If a config exists:
@@ -39,10 +43,7 @@ If validation fails, tell the user what's wrong and ask them to correct it.
 
 Create the config directory if it doesn't exist, then write the config to **both** paths:
 
-**Path 1 (marketplace — canonical):**
-`~/.claude/plugins/marketplaces/custom-plugins/inject-credentials-plugin/config/notion.conf`
-
-**Path 2 (cache — runtime):**
+**Path (cache — runtime):**
 Find the actual version directory under `~/.claude/plugins/cache/custom-plugins/inject-credentials-plugin/` and write to `<version>/config/notion.conf`.
 
 Config file format (no quotes around values):
