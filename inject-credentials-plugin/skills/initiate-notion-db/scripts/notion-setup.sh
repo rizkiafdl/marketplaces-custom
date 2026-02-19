@@ -1,6 +1,11 @@
 #!/bin/bash
 
-CONFIG_FILE="$HOME/.claude/plugins/marketplaces/custom-plugins/inject-credentials-plugin/config/notion.conf"
+MARKETPLACE_CONFIG="$HOME/.claude/plugins/marketplaces/custom-plugins/inject-credentials-plugin/config/notion.conf"
+CACHE_BASE="${CLAUDE_PLUGIN_ROOT:+$(dirname "$CLAUDE_PLUGIN_ROOT")}"
+CACHE_BASE="${CACHE_BASE:-__skip__}"
+
+# Primary config is marketplace (canonical location)
+CONFIG_FILE="$MARKETPLACE_CONFIG"
 CONFIG_DIR="$(dirname "$CONFIG_FILE")"
 
 # Ensure config directory exists
@@ -29,6 +34,7 @@ echo ""
 
 # Prompt for Data Source ID
 read -p "Notion Data Source ID: " DATA_SOURCE_ID
+DATA_SOURCE_ID="${DATA_SOURCE_ID// /}"
 
 if [ -z "$DATA_SOURCE_ID" ]; then
     echo "❌ Error: Data Source ID cannot be empty"
@@ -41,9 +47,15 @@ DB_NAME="${DB_NAME:-Main Notes}"
 
 # Prompt for Database URL
 read -p "Database URL (e.g., https://www.notion.so/...): " DB_URL
+DB_URL="${DB_URL// /}"
 
 if [ -z "$DB_URL" ]; then
     echo "❌ Error: Database URL cannot be empty"
+    exit 1
+fi
+
+if [[ "$DB_URL" != https://* ]]; then
+    echo "❌ Error: Database URL must start with https://"
     exit 1
 fi
 
@@ -64,9 +76,24 @@ EOF
 # Set appropriate permissions
 chmod 600 "$CONFIG_FILE"
 
+# Sync config to all versioned cache directories
+if [ -d "$CACHE_BASE" ]; then
+    for VERSION_DIR in "$CACHE_BASE"/*/; do
+        if [ -d "$VERSION_DIR" ]; then
+            mkdir -p "${VERSION_DIR}config"
+            if cp "$CONFIG_FILE" "${VERSION_DIR}config/notion.conf"; then
+                chmod 600 "${VERSION_DIR}config/notion.conf"
+            else
+                echo "⚠️  Warning: Failed to sync config to ${VERSION_DIR}"
+            fi
+        fi
+    done
+fi
+
 echo ""
 echo "✅ Configuration saved successfully!"
-echo "📍 Location: $CONFIG_FILE"
+echo "📍 Marketplace: $CONFIG_FILE"
+echo "📍 Cache: synced to all versioned cache directories"
 echo "🔑 Data Source ID: ${DATA_SOURCE_ID:0:8}...${DATA_SOURCE_ID: -4}"
 echo "📚 Database: $DB_NAME"
 echo "🏷️  Category: $DEFAULT_CATEGORY"
