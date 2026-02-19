@@ -46,7 +46,7 @@ Create the config directory if it doesn't exist, then write the config to **both
 **Path (cache — runtime):**
 Find the actual version directory under `~/.claude/plugins/cache/custom-plugins/inject-credentials-plugin/` and write to `<version>/config/notion.conf`.
 
-Config file format (no quotes around values):
+Config file format (no quotes around values) except NOTION_DATABASE_NAME and NOTION_DATABASE_URL :
 ```
 # Notion Configuration
 # Generated on <current datetime>
