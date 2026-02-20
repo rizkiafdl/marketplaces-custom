@@ -2,5 +2,7 @@
   "name": "context-folder-plugin",
   "version": "1.0.0",
   "description": "Auto-reads .context/ folder from the invoked project directory and injects contents as session context",
-  "author": { "name": "Muhammad Rizki Afdolli" }
+  "author": { 
+    "name": "Muhammad Rizki Afdolli" 
+  }
 }

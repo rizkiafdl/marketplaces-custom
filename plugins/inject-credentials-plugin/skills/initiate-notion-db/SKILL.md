@@ -50,10 +50,10 @@ Config file format (use quotes around values):
 ```
 # Notion Configuration
 # Generated on <current datetime>
-NOTION_DATA_SOURCE_ID=<value>
-NOTION_DATABASE_NAME=<value>
-NOTION_DATABASE_URL=<value>
-NOTION_DEFAULT_CATEGORY=<value>
+NOTION_DATA_SOURCE_ID="<value>"
+NOTION_DATABASE_NAME="<value>"
+NOTION_DATABASE_URL="<value>"
+NOTION_DEFAULT_CATEGORY="<value>"
 ```
 
 ## Step 4 — Set Permissions
