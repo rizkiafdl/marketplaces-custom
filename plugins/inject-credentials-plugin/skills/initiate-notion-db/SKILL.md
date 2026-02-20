@@ -26,12 +26,14 @@ If no config exists, proceed directly to Step 2.
 
 ## Step 2 — Collect Credentials
 
-Ask the user for these four values in a single message (not one at a time):
+Ask the user for these six values in a single message (not one at a time):
 
 1. **Notion Data Source ID** *(required)* — the database data source ID
 2. **Database Name** *(required)* — human-readable name (e.g. "Main Notes")
 3. **Database URL** *(required)* — must start with `https://www.notion.so/`
 4. **Default Category** *(optional, default: "Learning Engineering")* — category tag for new exported pages
+5. **Title Property Name** *(optional, default: "title")* — the exact property name used as the page title in this database (e.g. "Doc name", "Name", "Title")
+6. **Category Options** *(optional)* — comma-separated list of all available category values in this database (e.g. "Claude Code, Side Project, Finance, Learning Engineering")
 
 Validate before proceeding:
 - Data Source ID must not be empty
@@ -54,6 +56,8 @@ NOTION_DATA_SOURCE_ID="<value>"
 NOTION_DATABASE_NAME="<value>"
 NOTION_DATABASE_URL="<value>"
 NOTION_DEFAULT_CATEGORY="<value>"
+NOTION_TITLE_PROPERTY="<value or 'title' if not provided>"
+NOTION_CATEGORY_OPTIONS="<comma-separated list or empty if not provided>"
 ```
 
 ## Step 4 — Set Permissions
@@ -66,4 +70,5 @@ Tell the user:
 - Config saved to both paths
 - Data Source ID (masked: first 8 + last 4 chars)
 - Database name and default category
+- Title property name and category options (if provided)
 - "Restart Claude Code for the credentials to be injected on the next session start."
