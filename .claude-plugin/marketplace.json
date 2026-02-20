@@ -13,7 +13,7 @@
       "author": {
         "name": "Muhammad Rizki Afdolli"
       },
-      "source": "./inject-credentials-plugin",
+      "source": "./plugins/inject-credentials-plugin",
       "category": "productivity"
     },
     {
@@ -23,7 +23,7 @@
       "author": {
         "name": "Muhammad Rizki Afdolli"
       },
-      "source": "./context-folder-plugin",
+      "source": "./plugins/context-folder-plugin",
       "category": "productivity"
     }
   ]
