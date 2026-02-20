@@ -8,7 +8,7 @@ set -e
 CONFIG_FILE=""
 CANDIDATE_PATHS=(
     "${CLAUDE_PLUGIN_ROOT:-__skip__}/config/notion.conf"
-    "$(dirname "$0")/../config/notion.conf"
+    "$(dirname "$0")/../../config/notion.conf"
     "$HOME/.claude/plugins/marketplaces/custom-plugins/inject-credentials-plugin/config/notion.conf"
 )
 
