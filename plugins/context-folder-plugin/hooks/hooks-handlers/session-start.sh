@@ -21,7 +21,7 @@ fi
 # Silent no-op if no .context folder exists
 if [ ! -d "$CONTEXT_DIR" ]; then
   cat <<EOF
-{"hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": "Context folder plugin: no .context/ folder in $(pwd)"}}
+{"hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": "Context folder plugin: no .context/ folder found in $(pwd). Ask the user: 'No .context/ folder found — would you like me to create one to store project notes and context for future sessions?' Only create it if the user confirms."}}
 EOF
   exit 0
 fi
